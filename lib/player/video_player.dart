@@ -13,24 +13,50 @@ class VideoPlayer extends ConsumerStatefulWidget {
 }
 
 class _VideoPlayerState extends ConsumerState<VideoPlayer> {
+  late PageController pageController = PageController();
+
+    @override
+  void initState() {
+    super.initState();
+    pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final videoData = ref.watch(randomVideoProvider);
     return Scaffold(
-      body: videoData.when(
-          data: (data) {
-            log("Data video id received ${data.id}");
-            return YoutubePlayer(
-              controller: ref.read(videoControllerProvider(data.id)),
-              showVideoProgressIndicator: false,
-              progressIndicatorColor: Colors.amber,
-              aspectRatio: 9/16,
-              );
-          },
-          error: (e, s) {
-            return Text('Error Occured $e,$s');
-          },
-          loading: () => const CircularProgressIndicator()),
-    );
+        body: PageView.builder(
+            scrollDirection: Axis.vertical,
+            controller: pageController,
+            onPageChanged: (index) => ref.refresh(randomVideoProvider),
+            itemBuilder: (context, index) {
+              final videoData = ref.watch(randomVideoProvider);
+              return videoData.when(
+                  data: (data) {
+                    log("Data video id received ${data.id}");
+                    return YoutubePlayer(
+                        controller: ref.read(videoControllerProvider(data.id)),
+                        showVideoProgressIndicator: false,
+                        progressIndicatorColor: Colors.amber,
+                        aspectRatio: 9 / 16,
+                        onEnded: (metadata) {
+                            pageController.nextPage(
+                                duration: const Duration(microseconds: 300),
+                                curve: Curves.easeInOut);
+                          
+                          final nextVideo = ref.refresh(randomVideoProvider);
+                        });
+                  },
+                  error: (e, s) {
+                    return Text('Error Occured $e,$s');
+                  },
+                  loading: () =>
+                      const Center(child: CircularProgressIndicator()));
+            }));
   }
 }

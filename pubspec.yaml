@@ -39,6 +39,9 @@ dependencies:
   dio: ^5.7.0
   html: ^0.15.5
   youtube_player_flutter: ^9.0.4
+  chewie: ^1.8.5
+  video_player: ^2.9.2
+  better_player: ^0.0.84
 
 dev_dependencies:
   flutter_test:
