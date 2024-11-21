@@ -15,10 +15,20 @@ class VideoRepository {
     _dio.interceptors.add(AppInterceptor());
   }
 
-  Future<VideoModel> fetchVideo() async {
+  Future<List<VideoModel>> fetchVideo() async {
     try {
-      Response response = await _dio.get(Strings.randomVideoUrl);
-      return VideoModel.fromJson(response.data);
+      List<Future<Response>> futures =
+          List.generate(5, (_) => _dio.get(Strings.randomVideoUrl));
+
+      List<Response> responses = await Future.wait(futures);
+
+      List<VideoModel> videoList = responses.map((response) {
+        return VideoModel.fromJson(response.data);
+      }).toList();
+
+      log('Fetched ${videoList.length} videos');
+
+      return videoList;
     } catch (e) {
       throw Exception('Failed to Fetch data $e');
     }

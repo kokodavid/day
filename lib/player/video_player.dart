@@ -15,7 +15,7 @@ class VideoPlayer extends ConsumerStatefulWidget {
 class _VideoPlayerState extends ConsumerState<VideoPlayer> {
   late PageController pageController = PageController();
 
-    @override
+  @override
   void initState() {
     super.initState();
     pageController = PageController();
@@ -29,34 +29,48 @@ class _VideoPlayerState extends ConsumerState<VideoPlayer> {
 
   @override
   Widget build(BuildContext context) {
+    final videoData = ref.watch(randomVideoProvider);
     return Scaffold(
-        body: PageView.builder(
-            scrollDirection: Axis.vertical,
-            controller: pageController,
-            onPageChanged: (index) => ref.refresh(randomVideoProvider),
-            itemBuilder: (context, index) {
-              final videoData = ref.watch(randomVideoProvider);
-              return videoData.when(
-                  data: (data) {
-                    log("Data video id received ${data.id}");
-                    return YoutubePlayer(
-                        controller: ref.read(videoControllerProvider(data.id)),
-                        showVideoProgressIndicator: false,
-                        progressIndicatorColor: Colors.amber,
-                        aspectRatio: 9 / 16,
-                        onEnded: (metadata) {
-                            pageController.nextPage(
-                                duration: const Duration(microseconds: 300),
-                                curve: Curves.easeInOut);
-                          
-                          final nextVideo = ref.refresh(randomVideoProvider);
+        body: videoData.when(
+            data: (videos) => PageView.builder(
+                scrollDirection: Axis.vertical,
+                controller: pageController,
+                onPageChanged: (index) {
+                  final dataMap = {'videosList': videos, 'currentIndex': index};
+
+                  if (index + 1 < videos.length) {
+                    return ref.read(preloadNextVideoprovider(dataMap));
+                  }
+                },
+                itemBuilder: (context, index) {
+                  if (index >= videos.length) {
+                    return const Center(
+                      child: Text('No more videos'),
+                    );
+                  }
+                  final video = videos[index];
+                  final controller =
+                      ref.read(videoControllerProvider(video.id));
+
+                      if (index == 0){
+                        WidgetsBinding.instance.addPostFrameCallback((_){
+                          ref.read(preloadNextVideoprovider({'videosList':videos,'currentIndex':index}));
                         });
-                  },
-                  error: (e, s) {
-                    return Text('Error Occured $e,$s');
-                  },
-                  loading: () =>
-                      const Center(child: CircularProgressIndicator()));
-            }));
+                      }
+                  return YoutubePlayer(
+                      controller: controller,
+                      showVideoProgressIndicator: true,
+                      progressIndicatorColor: Colors.red,
+                      aspectRatio: 9 / 16,
+                      onEnded: (metadata) {
+                        pageController.nextPage(
+                            duration: const Duration(microseconds: 300),
+                            curve: Curves.easeInOut);
+                      });
+                }),
+            error: (e, s) {
+              return Text('Error Occured $e,$s');
+            },
+            loading: () => const Center(child: CircularProgressIndicator())));
   }
 }
