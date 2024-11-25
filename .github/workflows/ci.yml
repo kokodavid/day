@@ -26,8 +26,8 @@ jobs:
       - name: Flutter Setup
         uses: flutter-actions/setup-flutter@v3
         with:
-          flutter-version: stable
-          channel: 3.24.4
+          flutter-version: '3.24.4'
+          channel: 'stable'
 
       - name: Install Dependancies
         run: flutter pub get
