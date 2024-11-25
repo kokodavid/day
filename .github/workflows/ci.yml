@@ -1,0 +1,37 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      -main
+      
+
+  push:
+    branches:
+      -main
+      
+
+jobs:
+  build:
+    name: Run flutter test and analyze
+    runs-on: macos-latest
+
+    steps:
+      #1 Checkout Repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      
+      - name: Setup Java
+        uses: actions/setup-java@v3.12.0
+        with: 
+          distribution: 'oracle'
+          java-version: '17'
+
+      - name: Flutter Setup
+        uses: subosito/flutter-actions@v2
+        with:
+          flutter-version: '3.22.2'
+          channel: 'stable'
+
+      - name: Install Dependancies
+        run: flutter pub get
