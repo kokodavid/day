@@ -24,10 +24,10 @@ jobs:
           java-version: '17'
 
       - name: Flutter Setup
-        uses: subosito/flutter-actions@v2
+        uses: flutter-actions/setup-flutter@v3
         with:
-          flutter-version: '3.22.2'
-          channel: 'stable'
+          flutter-version: stable
+          channel: 3.0.2
 
       - name: Install Dependancies
         run: flutter pub get
