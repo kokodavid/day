@@ -8,7 +8,7 @@ on:
       - main     
 jobs:
   build:
-    name: Run flutter test and analyze
+    name: Flutter build
     runs-on: macos-latest
 
     steps:
@@ -47,7 +47,7 @@ jobs:
         run: flutter build appbundle
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Releases
           path: |
