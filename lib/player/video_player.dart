@@ -28,48 +28,51 @@ class _VideoPlayerState extends ConsumerState<VideoPlayer> {
     super.dispose();
   }
 
-@override
-Widget build(BuildContext context) {
-  final videoList = ref.watch(videoListProvider); 
+  @override
+  Widget build(BuildContext context) {
+    final videoList = ref.watch(videoListProvider);
 
-  if (videoList.isEmpty) {
-    ref.read(videoListProvider.notifier).initializeVideos();
-    return const Center(child: CircularProgressIndicator());
+    if (videoList.isEmpty) {
+      ref.read(videoListProvider.notifier).initializeVideos();
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    return Scaffold(
+      body: Container(
+        margin: const EdgeInsets.only(top: kToolbarHeight),
+        child: PageView.builder(
+          scrollDirection: Axis.vertical,
+          controller: pageController,
+          physics: const BouncingScrollPhysics(),
+          onPageChanged: (index) {
+            ref.read(currentVideoIndexProvider.notifier).state = index;
+            ref.read(preloadNextVideoProvider(index));
+          },
+          itemBuilder: (context, index) {
+            if (index >= videoList.length) {
+              return const Center(
+                child: Text('No more videos'),
+              );
+            }
+
+            final video = videoList[index];
+            final controller = ref.read(videoControllerProvider(video.id));
+
+            return YoutubePlayer(
+              controller: controller,
+              showVideoProgressIndicator: true,
+              progressIndicatorColor: Colors.red,
+              aspectRatio: 9 / 16,
+              onReady: () {
+                controller.play();
+              },
+              onEnded: (metadata) {
+                controller.pause();
+              },
+            );
+          },
+        ),
+      ),
+    );
   }
-
-  return Scaffold(
-    body: PageView.builder(
-      scrollDirection: Axis.vertical,
-      controller: pageController,
-      onPageChanged: (index) {
-        ref.read(currentVideoIndexProvider.notifier).state = index;
-
-        ref.read(preloadNextVideoProvider(index));
-      },
-      itemBuilder: (context, index) {
-        if (index >= videoList.length) {
-          return const Center(
-            child: Text('No more videos'),
-          );
-        }
-
-        final video = videoList[index];
-        final controller = ref.read(videoControllerProvider(video.id));
-
-        return YoutubePlayer(
-          controller: controller,
-          showVideoProgressIndicator: true,
-          progressIndicatorColor: Colors.red,
-          aspectRatio: 9 / 16,
-          onReady: () {
-            controller.play();
-          },
-          onEnded: (metadata) {
-            controller.pause();
-          },
-        );
-      },
-    ),
-  );
-}
 }
