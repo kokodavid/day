@@ -1,4 +1,4 @@
-import 'package:day/player/video_player.dart';
+import 'package:day/habits/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const VideoPlayer(),
+      home: const HomeScreen(),
     );
   }
 }
