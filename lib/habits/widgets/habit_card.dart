@@ -1,17 +1,20 @@
 import 'package:day/habits/widgets/habit_detail.dart';
 import 'package:day/helpers/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HabitCard extends StatelessWidget {
   final String title;
   final int days;
   final int nextMilestone;
+  final List<String> badges;
 
   const HabitCard({
     super.key,
     required this.title,
     required this.days,
     required this.nextMilestone,
+    required this.badges,
   });
 
   @override
@@ -61,6 +64,7 @@ class HabitCard extends StatelessWidget {
                   ],
                 ),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 16),
                     Text(
@@ -77,6 +81,19 @@ class HabitCard extends StatelessWidget {
                         fontSize: 14,
                       ),
                     ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: badges.map((badge) {
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: SvgPicture.asset(
+                            'assets/$badge.svg',
+                            height: 32,
+                            width: 32,
+                          ),
+                        );
+                      }).toList(),
+                    )
                   ],
                 ),
                 const Icon(
