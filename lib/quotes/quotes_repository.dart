@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:day/app_interceptor.dart';
 import 'package:day/quotes/quotes_model.dart';
-import 'package:day/strings.dart';
+import 'package:day/helpers/utils/strings.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

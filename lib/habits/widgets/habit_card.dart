@@ -1,4 +1,5 @@
 import 'package:day/habits/widgets/habit_detail.dart';
+import 'package:day/helpers/utils/theme.dart';
 import 'package:flutter/material.dart';
 
 class HabitCard extends StatelessWidget {
@@ -31,7 +32,7 @@ class HabitCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.deepPurple,
+          gradient: GlobalThemeData.linearGradient,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -59,26 +60,30 @@ class HabitCard extends StatelessWidget {
                     ),
                   ],
                 ),
+                Column(
+                  children: [
+                    const SizedBox(height: 16),
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Text(
+                      'Next milestone is $nextMilestone days.',
+                      style: const TextStyle(
+                        color: Colors.white70,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
                 const Icon(
                   Icons.arrow_forward_ios,
                   color: Colors.white,
                 ),
               ],
-            ),
-            const SizedBox(height: 16),
-            Text(
-              title,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-              ),
-            ),
-            Text(
-              'Next milestone is $nextMilestone days.',
-              style: const TextStyle(
-                color: Colors.white70,
-                fontSize: 14,
-              ),
             ),
           ],
         ),

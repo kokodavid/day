@@ -14,24 +14,28 @@ class DateStrip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dates = _getDates();
-    
+
     return Container(
-      height: 80,
+      height: 70,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: dates.length,
         itemBuilder: (context, index) {
           final date = dates[index];
-          final isToday = DateFormat('d').format(DateTime.now()) == 
-                         DateFormat('d').format(date);
-          
+          final isToday = DateFormat('d').format(DateTime.now()) ==
+              DateFormat('d').format(date);
+
           return Container(
             width: 45,
-            margin: const EdgeInsets.symmetric(horizontal: 4),
+            margin: const EdgeInsets.symmetric(horizontal: 5),
             decoration: BoxDecoration(
-              color: isToday ? Colors.deepPurple : Colors.transparent,
-              borderRadius: BorderRadius.circular(20),
+              color: Colors.white,
+              border: Border.all(
+                  color:
+                      isToday ? Theme.of(context).primaryColor : Colors.white,
+                  width: 2),
+              borderRadius: BorderRadius.circular(16),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -39,14 +43,16 @@ class DateStrip extends StatelessWidget {
                 Text(
                   DateFormat('d').format(date),
                   style: TextStyle(
-                    color: isToday ? Colors.white : Colors.black,
+                    color:
+                        isToday ? Theme.of(context).primaryColor : Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   DateFormat('E').format(date).toUpperCase(),
                   style: TextStyle(
-                    color: isToday ? Colors.white : Colors.grey,
+                    color:
+                        isToday ? Theme.of(context).primaryColor : Colors.grey,
                     fontSize: 12,
                   ),
                 ),
