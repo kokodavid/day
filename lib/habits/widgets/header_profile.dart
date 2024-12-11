@@ -32,12 +32,7 @@ class HeaderProfile extends ConsumerWidget {
             child: IconButton(
               icon: const Icon(Icons.add),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AddHabitScreen(),
-                  ),
-                );
+                show(context);
               },
             ),
           ),
@@ -45,4 +40,19 @@ class HeaderProfile extends ConsumerWidget {
       ),
     );
   }
+  void show(BuildContext context){
+  showModalBottomSheet(context: context, builder: (BuildContext context){
+    return Container(
+      height: 200,
+      width: MediaQuery.of(context).size.width,
+      child: const Column(
+        children: [
+          Text('Add Habit')
+        ],
+      ),
+    );
+  });
 }
+}
+
+
