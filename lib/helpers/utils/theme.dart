@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class GlobalThemeData {
   //Brand Colors
   static const Color primaryBlue = Color(0xFF3843FF);
-  static const Color primaryGreen = Color(0xFF8A24FF);
+  static const Color primaryPurple = Color(0xFF8A24FF);
   static const Color lightPurple = Color(0xFFA150FF);
   static const Color lightGreen = Color(0xFF4CC75A);
   static const Color darkGray = Color(0xFF333333);
@@ -45,14 +45,17 @@ class GlobalThemeData {
       bodySmall: GoogleFonts.roboto(
           fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black),
       bodyMedium: GoogleFonts.roboto(
-          fontSize: 18, fontWeight: FontWeight.w700, color: Colors.black),
+          fontSize: 18, fontWeight: FontWeight.w200, color: Colors.black),
       bodyLarge: GoogleFonts.roboto(
-          fontSize: 21, fontWeight: FontWeight.w700, color: Colors.black));
+          fontSize: 21, fontWeight: FontWeight.w600, color: Colors.black),
+          titleMedium: GoogleFonts.roboto(
+          fontSize: 21, fontWeight: FontWeight.w600, color: Colors.black),
+          );
 
   static const ColorScheme lightColorScheme = ColorScheme(
     primary: primaryBlue,
     onPrimary: white,
-    secondary: primaryGreen,
+    secondary: primaryPurple,
     onSecondary: white,
     error: Colors.redAccent,
     onError: white,

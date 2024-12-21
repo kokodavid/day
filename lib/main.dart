@@ -16,7 +16,6 @@ class MyApp extends ConsumerWidget {
     return MaterialApp.router(
       title: 'Day',
       theme: GlobalThemeData.lightThemeData,
-      
       darkTheme: GlobalThemeData.darkThemeData,
       routerConfig: router,
     );

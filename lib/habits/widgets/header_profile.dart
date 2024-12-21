@@ -42,12 +42,14 @@ class HeaderProfile extends ConsumerWidget {
   }
   void show(BuildContext context){
   showModalBottomSheet(context: context, builder: (BuildContext context){
-    return Container(
+    return SizedBox(
       height: 200,
       width: MediaQuery.of(context).size.width,
       child: const Column(
         children: [
-          Text('Add Habit')
+          Text('Add Habit'),
+          SizedBox(height: 20),
+          TextField(decoration: InputDecoration(labelText: 'Habit Name'),)
         ],
       ),
     );
