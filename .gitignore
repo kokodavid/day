@@ -24,3 +24,9 @@ lib/generated_plugin_registrant.dart
 .vscode/
 .idea/
 *.iml
+
+# Ignore APKs and AAB bundles
+*.apk
+*.aab
+android/app/build/
+android/app/outputs/
