@@ -1,4 +1,5 @@
 import 'package:day/habits/screens/home_screen.dart';
+import 'package:day/habits/screens/on_board_screen.dart';
 import 'package:day/habits/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,6 +10,7 @@ final appRouter = Provider<GoRouter>((ref) {
       initialLocation: '/',
       routes: [
         GoRoute(path: '/', builder: (context, state) => const SplashScreen()),
+        GoRoute(path: '/onBoard', builder: (context, state) => const OnBoardingScreen()),
         GoRoute(path: '/home', builder: (context, state) => const HomeScreen()),
 
       ],

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:day/habits/notifiers/check_item_notifier.dart';
 import 'package:day/habits/widgets/add_habit_screen.dart';
 import 'package:day/habits/widgets/check_item.dart';
@@ -108,7 +110,7 @@ void show(BuildContext context) {
                   textColor: Colors.white,
                   borderColor: Colors.transparent,
                   onPressed: () {
-                    print("Habit Added!");
+                    log("Habit Added!");
                   },
                 ),
               ],

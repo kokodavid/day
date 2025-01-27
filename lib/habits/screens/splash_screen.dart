@@ -10,7 +10,7 @@ class SplashScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Future.delayed(const Duration(seconds: 2),(){
-      context.go('/home');
+      context.go('/onBoard');
     });
     return Scaffold(
       body: Container(
