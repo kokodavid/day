@@ -1,6 +1,6 @@
-import 'package:day/habits/screens/home_screen.dart';
-import 'package:day/habits/screens/on_board_screen.dart';
-import 'package:day/habits/screens/splash_screen.dart';
+import 'package:day/features/habits/presentation/screens/home_screen.dart';
+import 'package:day/features/habits/presentation/screens/on_board_screen.dart';
+import 'package:day/features/habits/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

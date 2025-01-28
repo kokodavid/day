@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:day/app_interceptor.dart';
+import 'package:day/core/utils/app_interceptor.dart';
 import 'package:day/player/video_model.dart';
-import 'package:day/helpers/utils/strings.dart';
+import 'package:day/core/constants/strings.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

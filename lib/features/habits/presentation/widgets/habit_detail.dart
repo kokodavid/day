@@ -1,4 +1,4 @@
-import 'package:day/helpers/utils/theme.dart';
+import 'package:day/core/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:table_calendar/table_calendar.dart';

@@ -1,9 +1,9 @@
 import 'dart:developer';
 import 'dart:typed_data';
 
-import 'package:day/app_interceptor.dart';
-import 'package:day/quotes/quotes_model.dart';
-import 'package:day/helpers/utils/strings.dart';
+import 'package:day/core/utils/app_interceptor.dart';
+import 'package:day/features/quotes/quotes_model.dart';
+import 'package:day/core/constants/strings.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -18,13 +18,11 @@ class HomeScreen extends ConsumerWidget {
             HeaderProfile(),
             DateStrip(),
             Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    QuoteCard(),
-                    HabitList(),
-                  ],
-                ),
+              child: Column(
+                children: [
+                  QuoteCard(),
+                  HabitList(),
+                ],
               ),
             ),
           ],

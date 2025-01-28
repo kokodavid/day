@@ -5,6 +5,8 @@
 build/
 *.lock
 *.log
+*.env
+
 
 # Flutter
 **/android/app/debug/**
@@ -30,3 +32,6 @@ lib/generated_plugin_registrant.dart
 *.aab
 android/app/build/
 android/app/outputs/
+
+/android/app/build/outputs/apk/
+*.apk

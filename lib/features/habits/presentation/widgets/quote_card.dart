@@ -1,4 +1,4 @@
-import 'package:day/quotes/quotes_controller.dart';
+import 'package:day/features/quotes/quotes_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

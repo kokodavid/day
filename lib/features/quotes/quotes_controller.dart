@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
-import 'package:day/quotes/quotes_model.dart';
-import 'package:day/quotes/quotes_repository.dart';
+import 'package:day/features/quotes/quotes_model.dart';
+import 'package:day/features/quotes/quotes_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

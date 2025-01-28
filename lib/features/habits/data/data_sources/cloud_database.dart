@@ -1,4 +1,4 @@
-import 'package:day/habits/models/habit.dart';
+import 'package:day/features/habits/data/models/habit.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseService {

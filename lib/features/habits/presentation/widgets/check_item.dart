@@ -1,5 +1,5 @@
-import 'package:day/habits/notifiers/check_item_notifier.dart';
-import 'package:day/helpers/utils/theme.dart';
+import 'package:day/features/habits/presentation/state/notifiers.dart';
+import 'package:day/core/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
